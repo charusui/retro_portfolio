@@ -230,6 +230,431 @@ ul[class], ol[class] { list-style: none; margin: 0; padding: 0; }
 }
 
 
+/* ==========================================================================
+   03. LAYOUT
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--page-margin) * 2);
+  margin-inline: auto;
+  padding-inline: var(--page-margin);
+}
+.container--narrow { max-width: calc(var(--container-narrow) + var(--page-margin) * 2); }
+
+.section {
+  position: relative;
+  padding-block: var(--section-space);
+}
+.section--tight { padding-block: calc(var(--section-space) * 0.6); }
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--grid-gap);
+}
+.cols-2, .cols-3, .cols-4 { display: grid; gap: var(--grid-gap); }
+.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.stack > * + * { margin-top: var(--stack-space, var(--space-4)); }
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+}
+.btn-group--center { justify-content: center; margin-top: var(--space-6); }
+.btn-group--spaced { margin-top: var(--space-6); }
+
+/* Background themes — each sets its own text + focus colors */
+.bg-red   { background-color: var(--color-primary); color: var(--color-text-inverse); --focus-ring: var(--mustard-400); }
+.bg-teal  { background-color: var(--color-secondary); color: var(--color-text-inverse); --focus-ring: var(--mustard-400); }
+.bg-navy  { background-color: var(--navy-700); color: var(--color-text-inverse); --focus-ring: var(--mustard-400); }
+.bg-ink   { background-color: var(--ink-900); color: var(--color-text-inverse); --focus-ring: var(--mustard-400); }
+.bg-mustard { background-color: var(--mustard-400); color: var(--ink-900); }
+.bg-alt   { background-color: var(--color-bg-alt); }
+.bg-paper { background-color: var(--color-surface); }
+
+.bg-red .text-muted, .bg-teal .text-muted,
+.bg-navy .text-muted, .bg-ink .text-muted { color: var(--cream-200); }
+
+
+/* ==========================================================================
+   04. TYPOGRAPHY
+   ========================================================================== */
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--lh-snug);
+  text-wrap: balance;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+h1, .h1 { font-size: var(--fs-h1); line-height: 1.02; }
+h2, .h2 { font-size: var(--fs-h2); line-height: 1.08; }
+h3, .h3 { font-size: var(--fs-h3); }
+h4, .h4 { font-family: var(--font-body); font-size: 1.125rem; font-weight: 700; }
+
+p { margin: 0 0 var(--space-4); }
+p:last-child { margin-bottom: 0; }
+
+.lead { font-size: var(--fs-lead); line-height: 1.55; }
+.small { font-size: var(--fs-small); line-height: 1.5; }
+.text-muted { color: var(--color-text-muted); }
+.text-center { text-align: center; }
+.uppercase { text-transform: uppercase; }
+
+.label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.script {
+  font-family: var(--font-script);
+  font-size: var(--fs-script);
+  line-height: 1.15;
+  color: var(--color-primary);
+}
+.bg-navy .script, .bg-ink .script { color: var(--mustard-400); }
+.bg-red .script, .bg-teal .script { color: var(--mustard-200); } /* large text, 4:1+ */
+
+/* Vintage "— WELCOME TO THE WORKSHOP —" label with dotted rules */
+.label-rule {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.label-rule::before,
+.label-rule::after {
+  content: "";
+  flex: 1;
+  border-top: 4px dotted currentColor;
+  opacity: 0.6;
+}
+.label-rule--left::before { display: none; }
+
+.section-heading { margin-bottom: var(--space-8); }
+.section-heading > * + * { margin-top: var(--space-3); }
+.section-heading--center { text-align: center; max-width: 44rem; margin-inline: auto; }
+.section-heading--split {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-6);
+}
+
+.prose > * + * { margin-top: var(--space-4); }
+.prose p { margin-bottom: 0; }
+.prose h3 { margin-top: var(--space-6); }
+.prose ul { padding-left: 1.25rem; margin: 0; }
+.prose li + li { margin-top: var(--space-2); }
+.prose li::marker { color: var(--color-primary); }
+
+
+/* ==========================================================================
+   05. RETRO TEXTURES & DECORATIONS
+   ========================================================================== */
+.texture-halftone {
+  background-image: radial-gradient(rgba(43, 42, 48, 0.16) 1.2px, transparent 1.7px);
+  background-size: 8px 8px;
+}
+.bg-red.texture-halftone,
+.bg-teal.texture-halftone,
+.bg-navy.texture-halftone {
+  background-image: radial-gradient(rgba(251, 247, 240, 0.12) 1.2px, transparent 1.7px);
+}
+
+.sunburst { position: relative; isolation: isolate; overflow: hidden; }
+.sunburst::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  z-index: -1;
+  pointer-events: none;
+  background: repeating-conic-gradient(from 0deg at 50% 50%,
+    rgba(251, 247, 240, 0.07) 0deg 6deg,
+    transparent 6deg 12deg);
+}
+
+/* Four-color stripe band (coral / mustard / navy / teal) */
+.stripes {
+  height: 28px;
+  background: linear-gradient(to bottom,
+    var(--red-300) 0 25%,
+    var(--mustard-400) 25% 50%,
+    var(--navy-700) 50% 75%,
+    var(--teal-600) 75% 100%);
+}
+
+/* Notched ribbon banner */
+.ribbon {
+  display: inline-block;
+  padding: 0.3em 2.1em 0.4em;
+  background: var(--color-primary);
+  color: var(--cream-50);
+  font-family: var(--font-script);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: 1.2;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 0.9em) 50%, 100% 100%, 0 100%, 0.9em 50%);
+}
+.ribbon--teal { background: var(--color-secondary); }
+.ribbon--ink { background: var(--ink-900); color: var(--mustard-400); }
+
+/* Rubber stamp / sticker */
+.stamp {
+  --stamp-size: 128px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--stamp-size);
+  height: var(--stamp-size);
+  padding: calc(var(--stamp-size) * 0.125);
+  border: max(2px, calc(var(--stamp-size) * 0.0235)) solid currentColor;
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: calc(var(--stamp-size) * 0.086);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotate(-12deg);
+}
+.stamp::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--stamp-size) * 0.047);
+  border: max(1.5px, calc(var(--stamp-size) * 0.016)) dashed currentColor;
+  border-radius: 50%;
+}
+.stamp strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: calc(var(--stamp-size) * 0.1875);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.stamp--filled { background: var(--mustard-400); color: var(--ink-900); }
+
+/* Scrolling ticker */
+.marquee {
+  overflow: hidden;
+  padding-block: var(--space-4);
+  background: var(--ink-900);
+  color: var(--mustard-400);
+  border-block: var(--border-thick);
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.marquee__group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding-right: var(--space-6);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.marquee__group span[aria-hidden] { color: var(--red-300); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+
+
+/* ==========================================================================
+   06. COMPONENTS
+   ========================================================================== */
+
+/* ---- 6a. Buttons ------------------------------------------------------- */
+.btn {
+  --btn-bg: var(--color-surface);
+  --btn-fg: var(--color-text);
+  --btn-shadow: var(--ink-900);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 52px;
+  padding: 0.75rem 1.5rem;
+  border: var(--border-thin);
+  border-radius: var(--radius-md);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  box-shadow: 4px 4px 0 var(--btn-shadow);
+  font-family: var(--font-mono);
+  font-size: var(--fs-button);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+}
+.btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.btn:hover, .btn.is-hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--btn-shadow);
+}
+.btn:focus-visible, .btn.is-focus {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 5px;
+}
+.btn:active, .btn.is-active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--btn-shadow);
+}
+.btn:disabled, .btn.is-disabled, .btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn--primary   { --btn-bg: var(--color-primary); --btn-fg: var(--cream-50); }
+.btn--primary:hover, .btn--primary.is-hover { --btn-bg: var(--color-primary-hover); }
+.btn--secondary { --btn-bg: var(--color-surface); --btn-fg: var(--ink-900); }
+.btn--secondary:hover, .btn--secondary.is-hover { --btn-bg: #fff; }
+.btn--dark      { --btn-bg: var(--ink-900); --btn-fg: var(--cream-50); --btn-shadow: rgba(0, 0, 0, 0.35); }
+.btn--accent    { --btn-bg: var(--mustard-400); --btn-fg: var(--ink-900); }
+.btn--teal      { --btn-bg: var(--color-secondary); --btn-fg: var(--cream-50); }
+
+.btn--shadow-mustard { --btn-shadow: var(--mustard-400); }
+.btn--shadow-teal    { --btn-shadow: var(--teal-300); }
+.btn--shadow-navy    { --btn-shadow: var(--navy-700); }
+
+.btn--pill { border-radius: var(--radius-pill); }
+.btn--sm { min-height: 40px; padding: 0.5rem 1rem; font-size: 0.8125rem; box-shadow: 3px 3px 0 var(--btn-shadow); }
+.btn--lg { min-height: 64px; padding: 1rem 2.25rem; font-size: 1.0625rem; }
+.btn--block { width: 100%; }
+
+/* ---- 6b. Links --------------------------------------------------------- */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+.text-link:hover, .text-link.is-hover {
+  color: var(--ink-900);
+  text-decoration-style: wavy;
+}
+.bg-navy .text-link, .bg-ink .text-link { color: var(--mustard-400); }
+.bg-red .text-link, .bg-teal .text-link { color: var(--cream-50); }
+.bg-red .text-link:hover, .bg-teal .text-link:hover, .bg-navy .text-link:hover, .bg-ink .text-link:hover { color: var(--mustard-200); }
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding: var(--space-2) var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--fs-nav);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: var(--space-1);
+  right: var(--space-1);
+  bottom: 2px;
+  height: 3px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+.nav-link:hover::after, .nav-link.is-hover::after,
+.nav-link[aria-current="page"]::after { transform: scaleX(1); }
+.nav-link[aria-current="page"]::before {
+  content: "★";
+  position: absolute;
+  left: 50%;
+  top: -0.9em;
+  font-size: 0.7em;
+  transform: translateX(-50%);
+  color: var(--mustard-400);
+}
+.nav-link.is-disabled { opacity: 0.45; pointer-events: none; }
+
+/* ---- 6c. Badges -------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.3rem 0.65rem;
+  border: var(--border-thin);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--ink-900);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge--mustard { background: var(--mustard-400); }
+.badge--teal    { background: var(--teal-300); }
+.badge--red     { background: var(--color-primary); color: var(--cream-50); }
+.badge--ink     { background: var(--ink-900); color: var(--cream-50); }
+.badge--success { background: var(--color-success-bg); color: var(--color-success); border-color: var(--color-success); }
+.badge--warning { background: var(--color-warning-bg); color: var(--color-warning); border-color: var(--color-warning); }
+.badge--error   { background: var(--color-error-bg); color: var(--color-error); border-color: var(--color-error); }
+
+/* Availability placard: a hand-set shop sign, not a SaaS status pill.
+   Square corners + hard shadow + a static star, set in the body face so it
+   reads differently from the mono .label text around it. */
+.badge--live {
+  gap: 0.5em;
+  padding: 0.34rem 0.7rem;
+  border-radius: 0;
+  border-color: var(--ink-900);
+  background: var(--color-success-bg);
+  color: var(--ink-900);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 3px 3px 0 var(--ink-900);
+  transform: rotate(-1.25deg);
+}
+.badge--live::before {
+  content: "★";
+  font-size: 0.8em;
+  line-height: 1;
+}
+
 
 /* ==========================================================================
    07. SITE HEADER & NAVIGATION
