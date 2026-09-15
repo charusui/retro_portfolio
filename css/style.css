@@ -125,3 +125,108 @@
 }
 
 
+/* ==========================================================================
+   02. RESET & BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper grain over the whole page */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+body.no-scroll { overflow: hidden; }
+[hidden] { display: none !important; }
+
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+ul[class], ol[class] { list-style: none; margin: 0; padding: 0; }
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 1000;
+  padding: var(--space-3) var(--space-4);
+  background: var(--mustard-400);
+  color: var(--ink-900);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border: var(--border-thin);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
+
+/* Only real content should be selectable. Controls, labels and decoration
+   highlight as noise when someone drags across the page to copy something. */
+.btn,
+.chip,
+.tag,
+.badge,
+.stamp,
+.ribbon,
+.brand,
+.nav-link,
+.nav-toggle,
+.social-btn,
+.marquee,
+.stripes,
+.card-number,
+.step-no,
+.principle__no,
+.testimonial__mark,
+.testimonial__avatar,
+.hero-home__computer,
+.cta__swoosh {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Decorative art shouldn't drag out of the page either. */
+.hero-home__computer,
+.cta__swoosh,
+.stripes {
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+
