@@ -477,7 +477,6 @@ p:last-child { margin-bottom: 0; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 
-
 /* ==========================================================================
    06. COMPONENTS
    ========================================================================== */
@@ -750,4 +749,69 @@ p:last-child { margin-bottom: 0; }
 
 .site-header.is-menu-open { color: var(--cream-50); --focus-ring: var(--mustard-400); }
 
+
+
+/* ==========================================================================
+   09. PAGE — HOME
+   ========================================================================== */
+.hero-home {
+  position: relative;
+  overflow: hidden;
+  padding-top: var(--space-7);
+}
+.site-nav .text-link { color: var(--cream-50); }
+
+.hello {
+  display: flex;
+  justify-content: center;
+  margin: var(--space-5) 0 calc(var(--space-7) * -1 - var(--space-4));
+  font-family: var(--font-display);
+  font-size: clamp(5.5rem, 21vw, 19rem);
+  line-height: 0.8;
+  color: var(--cream-100);
+  text-transform: uppercase;
+  user-select: none;
+  transform: translateX(0.06em);
+}
+.hello span { display: inline-block; }
+.hello span:nth-child(1) { transform: rotate(-2deg); }
+.hello span:nth-child(2) { transform: skewY(-6deg) translateY(-3%); }
+.hello span:nth-child(3) { transform: scaleY(1.08) rotate(3deg); }
+.hello span:nth-child(4) { transform: skewY(5deg) translateY(3%); }
+.hello span:nth-child(5) { transform: rotate(-3deg); }
+
+.hero-home__sticker {
+  position: absolute;
+  top: 5.5rem;
+  right: 7%;
+  transform: rotate(14deg);
+}
+
+.hero-home__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: end;
+  gap: var(--space-8);
+}
+.hero-home__computer {
+  position: relative;
+  z-index: 1;
+  /* Connected directly into the marquee ribbon on desktop view */
+  align-self: end;
+  width: clamp(240px, 24vw, 340px);
+  margin-bottom: -4px;
+}
+.hero-home__note { padding-bottom: var(--space-8); }
+.hero-home__note--right { justify-self: end; text-align: right; }
+.hero-home__note--right .social-list { justify-content: flex-end; }
+.hero-home__name {
+  margin-bottom: var(--space-3);
+  font-size: clamp(1.625rem, 2.1vw, 2rem);
+  line-height: 1.1;
+}
+.hero-home__name span { display: block; color: var(--mustard-200); }
+.hero-home__note p { max-width: 24rem; }
+.hero-home__note--right p { margin-left: auto; }
+.hero-home__note .btn-group { margin-top: var(--space-5); }
+.hero-home__note--right > * + * { margin-top: var(--space-4); }
 
