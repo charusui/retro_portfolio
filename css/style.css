@@ -1,0 +1,127 @@
+/* ==========================================================================
+   CHARLES DEV WORKS — style.css
+   Retro-modern design system for the developer portfolio.
+   Every value here maps to a Figma style / variable of the same name.
+
+   CONTENTS
+   01. Design tokens
+   02. Reset & base
+   03. Layout (container, grid, sections, backgrounds)
+   04. Typography
+   05. Retro textures & decorations
+   06. Components
+       6a buttons · 6b links · 6c badges · 6d tags & chips
+       6e cards · 6f project card · 6g forms · 6h social buttons · 6i modal
+   07. Site header & navigation
+   08. Site footer
+   09. Page — Home
+   10. Page — About
+   11. Page — Projects
+   12. Page — Case study
+   13. Page — Contact
+   14. Responsive — tablet  (≤ 1024px)
+   15. Responsive — mobile  (≤ 600px)
+   16. Reduced motion
+   ========================================================================== */
+
+
+/* ==========================================================================
+   01. DESIGN TOKENS
+   ========================================================================== */
+:root {
+  /* --- Raw palette --- */
+  --red-600: #9E342F;
+  --red-500: #BA423C;
+  --red-300: #E47D72;
+  --teal-600: #2E6E6B;
+  --teal-300: #8CC0B8;
+  --mustard-400: #EDB843;
+  --mustard-200: #F6DC9A;
+  --navy-700: #2E3452;
+  --cream-50: #FBF7F0;
+  --cream-100: #F4EEE3;
+  --cream-200: #EADFCC;
+  --ink-900: #2B2A30;
+  --ink-600: #5E5862;
+  --ink-300: #B9AE9E;
+
+  /* --- Color roles --- */
+  --color-primary: var(--red-500);
+  --color-primary-hover: var(--red-600);
+  --color-secondary: var(--teal-600);
+  --color-accent: var(--mustard-400);
+  --color-bg: var(--cream-100);
+  --color-bg-alt: var(--cream-200);
+  --color-surface: var(--cream-50);
+  --color-text: var(--ink-900);
+  --color-text-muted: var(--ink-600);
+  --color-text-inverse: var(--cream-100);
+  --color-border: var(--ink-900);
+  --color-border-soft: #D6C9B4;
+  --color-success: #19674C;
+  --color-success-bg: #D5EEE2;
+  --color-warning: #8A5D00;
+  --color-warning-bg: #FBE7B0;
+  --color-error: #B3261E;
+  --color-error-bg: #F7D6D2;
+  --focus-ring: var(--ink-900);
+
+  /* --- Typography --- */
+  --font-display: "Alfa Slab One", Rockwell, Georgia, serif;
+  --font-script: "Shrikhand", "Brush Script MT", cursive;
+  --font-mono: "Space Mono", "Courier New", monospace;
+  --font-body: "Work Sans", "Segoe UI", system-ui, sans-serif;
+
+  --fs-display: clamp(4rem, 12vw, 9rem);
+  --fs-h1: clamp(2.5rem, 6vw, 4.5rem);
+  --fs-h2: clamp(2rem, 4vw, 3rem);
+  --fs-h3: clamp(1.375rem, 2vw, 1.75rem);
+  --fs-lead: clamp(1.125rem, 1.6vw, 1.3125rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.875rem;
+  --fs-label: 0.8125rem;
+  --fs-button: 0.9375rem;
+  --fs-nav: 0.875rem;
+  --fs-script: clamp(1.5rem, 3vw, 2.25rem);
+
+  --lh-tight: 0.95;
+  --lh-snug: 1.2;
+  --lh-body: 1.65;
+  --tracking-wide: 0.12em;
+
+  /* --- Spacing (4px base scale) --- */
+  --space-1: 0.25rem;  /*   4 */
+  --space-2: 0.5rem;   /*   8 */
+  --space-3: 0.75rem;  /*  12 */
+  --space-4: 1rem;     /*  16 */
+  --space-5: 1.5rem;   /*  24 */
+  --space-6: 2rem;     /*  32 */
+  --space-7: 3rem;     /*  48 */
+  --space-8: 4rem;     /*  64 */
+  --space-9: 6rem;     /*  96 */
+  --space-10: 8rem;    /* 128 */
+
+  /* --- Layout --- */
+  --page-margin: var(--space-8);
+  --section-space: var(--space-9);
+  --container: 75rem;          /* 1200px content width */
+  --container-narrow: 48rem;   /* 768px reading width */
+  --grid-gap: var(--space-5);
+  --card-padding: var(--space-6);
+  --header-height: 88px;
+
+  /* --- Shape --- */
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --border-thin: 2px solid var(--color-border);
+  --border-thick: 3px solid var(--color-border);
+  --shadow-sm: 3px 3px 0 var(--ink-900);
+  --shadow-md: 6px 6px 0 var(--ink-900);
+  --shadow-lg: 10px 10px 0 var(--ink-900);
+
+  --transition: 160ms ease;
+}
+
+
