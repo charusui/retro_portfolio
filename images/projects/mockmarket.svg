@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400"><defs><pattern id="d" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#2B2A30" fill-opacity=".16"/></pattern></defs><rect width="640" height="400" fill="#EDB843"/><rect width="640" height="400" fill="url(#d)"/>
+<rect x="60" y="44" width="520" height="312" rx="16" fill="#FBF7F0" stroke="#2B2A30" stroke-width="5"/>
+<text x="90" y="92" font-family="Georgia" font-weight="700" font-size="26" fill="#2B2A30">Market stress test</text>
+<rect x="440" y="68" width="112" height="32" rx="16" fill="#D5EEE2" stroke="#19674C" stroke-width="3"/>
+<text x="496" y="90" text-anchor="middle" font-family="Courier New, monospace" font-weight="700" font-size="13" fill="#19674C">LIVE 05:00</text>
+<rect x="90" y="116" width="300" height="210" rx="10" fill="#F4EEE3" stroke="#2B2A30" stroke-width="4"/>
+<polyline points="104,290 140,250 170,268 204,210 236,230 268,170 300,196 330,150 372,178" fill="none" stroke="#BA423C" stroke-width="6" stroke-linejoin="round"/>
+<polyline points="104,300 140,284 170,292 204,262 236,272 268,240 300,256 330,226 372,236" fill="none" stroke="#2E6E6B" stroke-width="5" stroke-dasharray="10 7"/>
+<g stroke="#2B2A30" stroke-width="4">
+<circle cx="440" cy="150" r="24" fill="#E47D72"/><circle cx="512" cy="150" r="24" fill="#8CC0B8"/>
+<circle cx="440" cy="222" r="24" fill="#2E3452"/><circle cx="512" cy="222" r="24" fill="#EDB843"/>
+<rect x="416" y="270" width="120" height="50" rx="10" fill="#2B2A30"/></g>
+<text x="476" y="301" text-anchor="middle" font-family="Courier New, monospace" font-weight="700" font-size="14" fill="#EDB843">AGENTS</text></svg>

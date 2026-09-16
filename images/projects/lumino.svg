@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400"><defs><pattern id="d" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#FBF7F0" fill-opacity=".12"/></pattern></defs><rect width="640" height="400" fill="#2E3452"/><rect width="640" height="400" fill="url(#d)"/>
+<rect x="60" y="44" width="520" height="312" rx="16" fill="#F4EEE3" stroke="#2B2A30" stroke-width="5"/>
+<path d="M60 84 H580" stroke="#2B2A30" stroke-width="5"/>
+<circle cx="86" cy="64" r="7" fill="#BA423C"/><circle cx="108" cy="64" r="7" fill="#EDB843"/><circle cx="130" cy="64" r="7" fill="#8CC0B8"/>
+<rect x="90" y="110" width="190" height="130" rx="10" fill="#FBF7F0" stroke="#2B2A30" stroke-width="4"/>
+<rect x="360" y="110" width="190" height="130" rx="10" fill="#FBF7F0" stroke="#2B2A30" stroke-width="4"/>
+<rect x="90" y="110" width="190" height="26" rx="10" fill="#E47D72" stroke="#2B2A30" stroke-width="4"/>
+<rect x="360" y="110" width="190" height="26" rx="10" fill="#8CC0B8" stroke="#2B2A30" stroke-width="4"/>
+<g fill="#2B2A30" fill-opacity=".45"><rect x="108" y="154" width="120" height="9" rx="4"/><rect x="108" y="174" width="150" height="9" rx="4"/><rect x="108" y="194" width="90" height="9" rx="4"/>
+<rect x="378" y="154" width="140" height="9" rx="4"/><rect x="378" y="174" width="100" height="9" rx="4"/><rect x="378" y="194" width="130" height="9" rx="4"/></g>
+<path d="M280 180 C 305 140, 335 140, 360 180" fill="none" stroke="#BA423C" stroke-width="5" stroke-dasharray="10 8"/>
+<circle cx="320" cy="150" r="22" fill="#EDB843" stroke="#2B2A30" stroke-width="4"/><circle cx="320" cy="150" r="8" fill="#2B2A30"/>
+<rect x="90" y="266" width="460" height="62" rx="12" fill="#2B2A30"/>
+<text x="110" y="304" font-family="Courier New, monospace" font-weight="700" font-size="17" fill="#EDB843">&gt; reading pixels... 2 apps linked_</text></svg>

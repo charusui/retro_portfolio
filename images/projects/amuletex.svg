@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400"><defs><pattern id="d" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#FBF7F0" fill-opacity=".12"/></pattern></defs><rect width="640" height="400" fill="#2B2A30"/><rect width="640" height="400" fill="url(#d)"/>
+<rect x="60" y="44" width="520" height="312" rx="16" fill="#F4EEE3" stroke="#EDB843" stroke-width="5"/>
+<rect x="62" y="46" width="516" height="50" rx="12" fill="#2E6E6B"/>
+<text x="86" y="79" font-family="Georgia" font-weight="700" font-size="20" fill="#FBF7F0">AmuletEX control plane</text>
+<g font-family="Courier New, monospace" font-weight="700" font-size="14">
+<rect x="86" y="116" width="468" height="40" rx="8" fill="#FBF7F0" stroke="#2B2A30" stroke-width="3"/>
+<text x="102" y="141" fill="#2B2A30">agent-07  read   /src/app.rs</text>
+<rect x="468" y="124" width="72" height="24" rx="12" fill="#D5EEE2" stroke="#19674C" stroke-width="2"/><text x="504" y="141" text-anchor="middle" font-size="11" fill="#19674C">ALLOW</text>
+<rect x="86" y="166" width="468" height="40" rx="8" fill="#F7D6D2" stroke="#2B2A30" stroke-width="3"/>
+<text x="102" y="191" fill="#2B2A30">agent-03  delete /etc/*</text>
+<rect x="468" y="174" width="72" height="24" rx="12" fill="#BA423C" stroke="#2B2A30" stroke-width="2"/><text x="504" y="191" text-anchor="middle" font-size="11" fill="#FBF7F0">BLOCK</text>
+<rect x="86" y="216" width="468" height="40" rx="8" fill="#FBF7F0" stroke="#2B2A30" stroke-width="3"/>
+<text x="102" y="241" fill="#2B2A30">agent-07  write  /tmp/out.log</text>
+<rect x="468" y="224" width="72" height="24" rx="12" fill="#D5EEE2" stroke="#19674C" stroke-width="2"/><text x="504" y="241" text-anchor="middle" font-size="11" fill="#19674C">ALLOW</text>
+<rect x="86" y="266" width="468" height="40" rx="8" fill="#FBE7B0" stroke="#2B2A30" stroke-width="3"/>
+<text x="102" y="291" fill="#2B2A30">graveyard restore notes.md</text>
+<rect x="468" y="274" width="72" height="24" rx="12" fill="#EDB843" stroke="#2B2A30" stroke-width="2"/><text x="504" y="291" text-anchor="middle" font-size="11" fill="#2B2A30">SOFT</text>
+</g>
+<text x="86" y="336" font-family="Courier New, monospace" font-size="13" fill="#5E5862">zero-trust RBAC / FUSE / websockets</text></svg>
