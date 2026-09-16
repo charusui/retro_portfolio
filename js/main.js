@@ -15,20 +15,42 @@ document.addEventListener('DOMContentLoaded', () => {
     label.textContent = thisYear;
   });
 
-  // Projects filtering
+  // Projects filtering & instant search
   const projectGrid = document.querySelector('[data-project-grid]');
   const filterPills = document.querySelectorAll('[data-filter]');
+  const searchBar = document.getElementById('project-search');
+  const resultsCounter = document.querySelector('[data-results-count]');
+  const noMatchNotice = document.querySelector('[data-empty-state]');
 
   if (projectGrid) {
     const projectCards = Array.from(projectGrid.querySelectorAll('[data-category]'));
     let currentCategory = 'all';
 
     function runProjectFilter() {
+      const query = searchBar ? searchBar.value.trim().toLowerCase() : '';
+      let matchesFound = 0;
+
       for (let i = 0; i < projectCards.length; i++) {
         const item = projectCards[i];
         const itemCats = item.dataset.category ? item.dataset.category.toLowerCase().split(' ') : [];
+        const itemContent = item.innerText ? item.innerText.toLowerCase() : '';
+
         const categoryMatches = (currentCategory === 'all') || itemCats.includes(currentCategory);
-        item.hidden = !categoryMatches;
+        const searchMatches = !query || itemContent.includes(query);
+
+        if (categoryMatches && searchMatches) {
+          item.hidden = false;
+          matchesFound++;
+        } else {
+          item.hidden = true;
+        }
+      }
+
+      if (resultsCounter) {
+        resultsCounter.textContent = matchesFound;
+      }
+      if (noMatchNotice) {
+        noMatchNotice.hidden = (matchesFound > 0);
       }
     }
 
@@ -40,5 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
         runProjectFilter();
       });
     });
+
+    if (searchBar) {
+      searchBar.addEventListener('input', runProjectFilter);
+    }
   }
 });
