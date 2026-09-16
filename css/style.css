@@ -655,34 +655,6 @@ p:last-child { margin-bottom: 0; }
 }
 
 
-/* Scrolling ticker */
-.marquee {
-  overflow: hidden;
-  padding-block: var(--space-4);
-  background: var(--ink-900);
-  color: var(--mustard-400);
-  border-block: var(--border-thick);
-}
-.marquee__track {
-  display: flex;
-  width: max-content;
-  animation: marquee 38s linear infinite;
-}
-.marquee__group {
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
-  padding-right: var(--space-6);
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.marquee__group span[aria-hidden] { color: var(--red-300); }
-@keyframes marquee { to { transform: translateX(-50%); } }
-
-
-
 /* ==========================================================================
    07. SITE HEADER & NAVIGATION
    ========================================================================== */
@@ -842,4 +814,62 @@ p:last-child { margin-bottom: 0; }
 .hero-home__note--right p { margin-left: auto; }
 .hero-home__note .btn-group { margin-top: var(--space-5); }
 .hero-home__note--right > * + * { margin-top: var(--space-4); }
+
+/* Intro / profile */
+.intro__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-9);
+  align-items: center;
+}
+.intro__title { margin-block: var(--space-4) var(--space-2); }
+.intro__text { margin-top: var(--space-5); }
+.intro .btn-group { margin-top: var(--space-6); }
+
+.fact-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: var(--space-7);
+  border: var(--border-thin);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.fact-row div { padding: var(--space-4); }
+.fact-row div + div { border-left: var(--border-thin); }
+.fact-row dt { color: var(--color-text-muted); }
+.fact-row dd { margin: var(--space-1) 0 0; font-weight: 700; }
+
+.portrait { position: relative; max-width: 440px; margin-left: auto; }
+.portrait__frame {
+  overflow: hidden;
+  border: var(--border-thick);
+  border-radius: 200px 200px var(--radius-lg) var(--radius-lg);
+  background: var(--mustard-400);
+  box-shadow: var(--shadow-lg);
+}
+.portrait__frame img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.portrait .stamp {
+  position: absolute;
+  left: -48px;
+  bottom: 40px;
+  background: var(--cream-50);
+  color: var(--color-primary);
+}
+.portrait__ribbon {
+  position: absolute;
+  right: -24px;
+  top: 38px;
+  transform: rotate(6deg);
+}
+
+/* Stats strip */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+.stat-strip div { padding: var(--space-4); border-left: 4px solid var(--color-primary); }
+.stat-strip strong { display: block; font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 400; line-height: 1; }
+.stat-strip span { display: block; margin-top: var(--space-2); }
 
