@@ -1273,6 +1273,59 @@ select.input {
 .cta__panel .btn-group { justify-content: center; margin-top: var(--space-6); }
 
 
+/* ==========================================================================
+   10. PAGE — ABOUT
+   ========================================================================== */
+/* Lunch-box style striped hero */
+.stripe-hero { position: relative; overflow: hidden; background: var(--cream-200); }
+.stripe-hero__inner {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  align-items: center;
+  gap: var(--space-7);
+  padding-block: var(--space-8);
+}
+.stripe-hero__art {
+  position: relative;
+  z-index: 2;
+  transform: rotate(-4deg);
+}
+.stripe-hero__art img {
+  border: var(--border-thick);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+.stripe-hero__bands { display: grid; }
+.stripe-hero__band {
+  padding: var(--space-3) var(--space-6);
+  color: var(--color-primary);
+}
+.stripe-hero__band--main {
+  margin-left: calc(var(--space-9) * -1);
+  margin-right: calc(var(--page-margin) * -1 - 50vw);
+  padding: var(--space-4) var(--space-6) var(--space-4) calc(var(--space-9) + var(--space-6));
+  background: var(--color-primary);
+  color: var(--cream-100);
+  border-block: 6px solid var(--cream-50);
+}
+.stripe-hero__band--main .display {
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  text-shadow: 5px 5px 0 var(--red-600);
+}
+.stripe-hero__band .label { font-size: clamp(1rem, 2vw, 1.5rem); letter-spacing: 0.3em; }
+
+.principles { counter-reset: principle; }
+.principle { text-align: left; }
+.principle h3 { margin-bottom: var(--space-3); }
+.principle__no {
+  display: block;
+  margin-bottom: var(--space-4);
+  font-family: var(--font-script);
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--color-primary);
+}
+
 
 /* ==========================================================================
    11. PAGE — PROJECTS
