@@ -88,10 +88,168 @@
 
     <!-- Deep-dive sections: problem framing, architecture, and takeaways -->
     <section class="section">
-      <div class="container">
-        <p>Detailed architecture breakdown in progress...</p>
+      <div class="container case-layout">
+        <nav class="case-toc" aria-label="On this page">
+          <p class="label">On this page</p>
+          <ol class="case-toc__list">
+            <li><a href="#overview" aria-current="true">Overview</a></li>
+            <li><a href="#problem">01 Problem</a></li>
+            <li><a href="#process">02 Process</a></li>
+            <li><a href="#solution">03 Solution</a></li>
+            <li><a href="#result">04 Result</a></li>
+            <li><a href="#lessons">Takeaways</a></li>
+          </ol>
+        </nav>
+
+        <div>
+          <article class="case-section" id="overview">
+            <p class="label label-rule label-rule--left">Overview</p>
+            <div class="prose">
+              <h2>Security that works before the scam does</h2>
+              <p class="lead">Digital fraud reaches people through the channels they trust most: text messages, chat apps and phone calls. Seguri protects the users most likely to be targeted by spotting a threat before they act on it.</p>
+              <h3>Objectives</h3>
+              <ul>
+                <li>Detect phishing links, scam messages and fraudulent calls in one app.</li>
+                <li>Keep personal messages private by analysing on the device first.</li>
+                <li>Warn users fast enough to matter, with a target under 200 ms.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="case-section" id="problem">
+            <header class="case-section__head"><span class="step-no" aria-hidden="true">01</span><h2>The problem</h2></header>
+            <div class="prose">
+              <p>Most scam protection forces a trade-off. Cloud-only detection is smart but means sending private conversations to a server. On-device-only detection keeps data private but can miss new, cleverly worded scams. Vulnerable users can't be expected to judge that trade-off themselves.</p>
+            </div>
+            <blockquote class="quote-card">
+              <p>The design tension: how do you get cloud-level intelligence without giving up on-device privacy?</p>
+              <footer class="label text-muted">— Core question behind Seguri</footer>
+            </blockquote>
+          </article>
+
+          <article class="case-section" id="process">
+            <header class="case-section__head"><span class="step-no" aria-hidden="true">02</span><h2>The process</h2></header>
+            <div class="prose">
+              <p>The work moved from understanding threats to proving the system was fast and accurate enough to trust.</p>
+            </div>
+            <ol class="process-steps">
+              <li class="card card--flat"><span class="label text-muted">Step 1</span><h4>Map threats</h4><p>Group attacks by channel: links, messages and calls.</p></li>
+              <li class="card card--flat"><span class="label text-muted">Step 2</span><h4>Design alerts</h4><p>Clear, calm warnings with one obvious action.</p></li>
+              <li class="card card--flat"><span class="label text-muted">Step 3</span><h4>Build hybrid AI</h4><p>100% offline on-device scanning with optional Gemini cloud features.</p></li>
+              <li class="card card--flat"><span class="label text-muted">Step 4</span><h4>Measure</h4><p>Tune for speed (&lt;200 ms) and accuracy (98%).</p></li>
+            </ol>
+            <!-- Architecture diagram: simplified 5-node hybrid flow SVG -->
+            <figure class="figure">
+              <img src="images/projects/seguri-flow.svg" alt="Diagram: on-device AI screens messages offline; safe items pass without alert, threats trigger an instant block, and Gemini cloud is an optional assistant" width="800" height="380" loading="lazy">
+              <figcaption>Fig. 1 — The hybrid-AI flow, simplified.</figcaption>
+            </figure>
+          </article>
+
+          <article class="case-section" id="solution">
+            <header class="case-section__head"><span class="step-no" aria-hidden="true">03</span><h2>The solution</h2></header>
+            <div class="prose">
+              <p>Seguri's <strong>Hybrid-AI Security Suite</strong> combines an offline-first on-device neural network with optional cloud intelligence. Key decisions:</p>
+              <ul>
+                <li><strong>100% on-device core</strong>: 24/7 Active Guard and volatile RAM-only scanner run locally in milliseconds with zero data upload.</li>
+                <li><strong>Context &amp; heuristics</strong>: dual-layer TFLite model detects regional slang (e.g. Taglish scams), while Dart heuristics eliminate false alarms on safe family texts and OTPs.</li>
+                <li><strong>Empathetic protection</strong>: high-contrast plain-language alerts, an offline step-by-step Scam First Aid Kit, and a secure local evidence log.</li>
+              </ul>
+            </div>
+            <div class="figure-pair">
+              <figure class="figure">
+                <img src="images/projects/seguri.svg" alt="Scam alert screen illustration" width="640" height="400" loading="lazy">
+                <figcaption>Threat alert</figcaption>
+              </figure>
+              <figure class="figure">
+                <img src="images/projects/seguri-mobile.svg" alt="Illustration of Seguri's protection summary screen on a phone" width="300" height="560" loading="lazy">
+                <figcaption>Protection summary</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="case-section" id="result">
+            <header class="case-section__head"><span class="step-no" aria-hidden="true">04</span><h2>The result</h2></header>
+            <div class="prose">
+              <p>A single app that screens every major scam channel quickly and accurately.</p>
+            </div>
+            <div class="stats">
+              <div class="card stat"><span class="stat__value">&lt;200ms</span><span class="label stat__label">Detection time</span></div>
+              <div class="card card--mustard stat"><span class="stat__value">98%</span><span class="label stat__label">Detection accuracy</span></div>
+              <div class="card stat"><span class="stat__value">3</span><span class="label stat__label">Threat channels covered</span></div>
+            </div>
+          </article>
+
+          <article class="case-section" id="lessons">
+            <p class="label label-rule label-rule--left">Takeaways</p>
+            <div class="split-cards">
+              <div class="card card--flat">
+                <h3 class="card__title">What was hard</h3>
+                <p class="text-muted">Balancing speed and accuracy. Every call to the cloud adds latency, so deciding <em>when</em> to escalate mattered as much as the models themselves.</p>
+              </div>
+              <div class="card card--flat card--teal">
+                <h3 class="card__title">What I took away</h3>
+                <p>Security for vulnerable users is a UX problem as much as an AI problem. The best detection is useless if the warning confuses people.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer pagination: next flagship repo (Lumino) -->
+    <section class="section--tight bg-red texture-halftone">
+      <div class="container next-project">
+        <div>
+          <p class="label">Next project</p>
+          <p class="h2">Lumino</p>
+        </div>
+        <div class="btn-group">
+          <a class="btn btn--secondary" href="projects.html">← All projects</a>
+          <a class="btn btn--accent" href="https://github.com/charusui/Lumino_Git">View Lumino ↗</a>
+        </div>
       </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="stripes" aria-hidden="true"></div>
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <a class="brand" href="index.html" aria-label="Charles Viray, home">
+            <span class="brand__mark" aria-hidden="true">CV</span>
+            <span class="brand__word" aria-hidden="true">Charles<br>Viray</span>
+          </a>
+          <p class="small">Smart software, end to end. AI &amp; software engineer from Pampanga, Philippines.</p>
+        </div>
+        <nav aria-label="Footer">
+          <p class="label site-footer__title">Sitemap</p>
+          <ul class="site-footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <p class="label site-footer__title">Elsewhere</p>
+          <ul class="site-footer__links">
+            <li><a href="https://github.com/charusui">GitHub ↗</a></li>
+            <li><a href="https://www.linkedin.com/in/charles-viray-a45526373">LinkedIn ↗</a></li>
+            <li><a href="mailto:viraycharlesdwayne@gmail.com">Email</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="label site-footer__title">Status</p>
+          <p><span class="badge badge--live">Open to work</span></p>
+          <p class="small">Internships, full-time and freelance. Remote preferred.</p>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© <span data-year>2026</span> Charles Viray. Built with HTML &amp; CSS.</p>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

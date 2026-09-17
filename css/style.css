@@ -1370,3 +1370,98 @@ select.input {
   background: var(--cream-50);
   font-family: var(--font-mono);
   font-size: 0.75rem;
+}
+
+.case-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--space-9);
+  align-items: start;
+}
+.case-layout > * { min-width: 0; }
+.case-toc {
+  position: sticky;
+  top: var(--space-6);
+}
+.case-toc ol { display: grid; gap: var(--space-1); margin-top: var(--space-3); }
+.case-toc a {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid transparent;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-decoration: none;
+}
+.case-toc a:hover, .case-toc a[aria-current="true"] { border-color: var(--color-primary); background: var(--cream-200); }
+
+.case-section + .case-section {
+  margin-top: var(--space-9);
+  padding-top: var(--space-9);
+  border-top: 3px dotted var(--color-border-soft);
+}
+.case-section__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+.step-no {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  border: var(--border-thick);
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--cream-50);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.case-section .prose { max-width: 44rem; }
+
+.quote-card {
+  margin: var(--space-6) 0 0;
+  padding: var(--space-6);
+  border-left: 8px solid var(--color-primary);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  background: var(--cream-200);
+}
+.quote-card p { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.3; }
+.quote-card footer { margin-top: var(--space-3); }
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+.process-steps .card { padding: var(--space-5); }
+.process-steps h4 { margin-block: var(--space-2); }
+.process-steps p { font-size: 0.925rem; color: var(--color-text-muted); }
+
+.figure { margin: var(--space-6) 0 0; }
+.figure img { border: var(--border-thin); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+.figure figcaption { margin-top: var(--space-3); font-family: var(--font-mono); font-size: var(--fs-small); color: var(--color-text-muted); }
+.figure-pair { display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-5); align-items: end; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+.stat { text-align: center; }
+.stat__value { display: block; font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1; color: var(--color-primary); }
+.stat__label { display: block; margin-top: var(--space-2); }
+
+.next-project {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+
