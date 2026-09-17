@@ -1326,6 +1326,87 @@ select.input {
   color: var(--color-primary);
 }
 
+/* Awards & certifications */
+.award-list { display: grid; gap: var(--space-3); }
+.award-list li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border: var(--border-thin);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.award-list__icon { font-size: 1.5rem; color: var(--color-primary); line-height: 1; }
+.award-list strong, .award-list .text-muted { display: block; }
+.cert-subhead { margin-top: var(--space-6); }
+.cert-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+.cert-list { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+.cert-list a {
+  display: flex; justify-content: space-between; gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 2px dashed var(--color-border-soft);
+  font-size: 0.9375rem; text-decoration: none;
+}
+.cert-list a:hover { color: var(--color-primary); }
+.cert-list a::after { content: "PDF ↗"; font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 700; color: var(--color-primary); white-space: nowrap; }
+
+.article-list { display: grid; gap: var(--space-4); }
+.article-link { display: grid; gap: var(--space-1); text-decoration: none; }
+.article-link:hover strong { text-decoration: underline; text-decoration-thickness: 2px; }
+
+/* Timeline */
+.timeline {
+  position: relative;
+  display: grid;
+  gap: var(--space-7);
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-left: 4px dotted var(--ink-900);
+  transform: translateX(-50%);
+}
+.timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-9);
+}
+.timeline__year {
+  position: absolute;
+  left: 50%;
+  top: var(--space-5);
+  z-index: 1;
+  transform: translateX(-50%);
+}
+.timeline__item .card { grid-column: 1; }
+.timeline__item:nth-child(even) .card { grid-column: 2; }
+.timeline__item .card h3 { margin-block: var(--space-2); font-size: 1.375rem; }
+
+.split-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
+.entry + .entry { margin-top: var(--space-5); padding-top: var(--space-5); border-top: 2px dashed var(--color-border-soft); }
+.entry h4 { margin-bottom: var(--space-1); }
+.entry .label { color: var(--color-primary); }
+
+.skills-directory {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.learning-band {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+
+
 
 /* ==========================================================================
    11. PAGE — PROJECTS
