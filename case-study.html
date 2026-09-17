@@ -1,0 +1,97 @@
+<!-- 
+  Charles Dwayne Viray · Seguri Case Study
+  Hybrid-AI mobile security architecture breakdown
+  Includes verified hackathon metrics (<200ms latency, 98% accuracy)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguri Case Study — Charles Viray</title>
+  <meta name="description" content="How Seguri, a privacy-first mobile security app, detects phishing, scam messages and fraudulent calls in under 200 ms.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Shrikhand&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header site-header--teal" id="top">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" aria-label="Charles Viray, home">
+        <span class="brand__mark" aria-hidden="true">CV</span>
+        <span class="brand__word" aria-hidden="true">Charles<br>Viray</span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="nav-link" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="about.html">About</a></li>
+          <li><a class="nav-link" href="projects.html" aria-current="page">Projects</a></li>
+          <li><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="site-nav__extra">
+          <span class="badge badge--live">Open to work</span>
+          <a class="text-link" href="mailto:viraycharlesdwayne@gmail.com">viraycharlesdwayne@gmail.com</a>
+          <a class="btn btn--accent" href="assets/charles-viray-resume.pdf" download>Download résumé ↓</a>
+        </div>
+      </nav>
+      <div class="site-header__actions">
+        <a class="btn btn--dark btn--sm site-header__cta" href="assets/charles-viray-resume.pdf" download>Résumé ↓</a>
+        <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false">
+          <span class="nav-toggle__bars" aria-hidden="true"></span>
+          <span class="sr-only">Menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Case hero: project metadata and quick breadcrumb navigation -->
+    <section class="case-hero bg-teal sunburst" aria-labelledby="case-title">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li><a href="projects.html">Projects</a></li>
+            <li aria-current="page">Seguri</li>
+          </ol>
+        </nav>
+        <div class="case-hero__grid">
+          <div>
+            <span class="badge badge--mustard">Case study No. 01</span>
+            <h1 class="display" id="case-title">Seguri</h1>
+            <p class="lead">A privacy-first mobile security app that protects vulnerable users from phishing, scam messages and fraudulent calls, catching threats in under 200 ms.</p>
+            <div class="btn-group btn-group--spaced">
+              <a class="btn btn--accent" href="https://github.com/charusui/Seguri_git">View repository ↗</a>
+              <a class="btn btn--dark" href="projects.html">All projects</a>
+            </div>
+          </div>
+          <dl class="meta-list">
+            <div><dt>Type</dt><dd>Mobile security app</dd></div>
+            <div><dt>Focus</dt><dd>Fraud &amp; scam detection</dd></div>
+            <div><dt>Platform</dt><dd>Cross-platform (Flutter)</dd></div>
+            <div><dt>Stack</dt><dd>Dart, Flutter, on-device ML, cloud LLMs</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <div class="container case-shot">
+      <div class="browser">
+        <div class="browser__bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser__url">seguri / threat alert</span></div>
+        <img src="images/projects/seguri.svg" alt="Illustration of Seguri's scam-detected alert screen with block and details buttons" width="640" height="400">
+      </div>
+    </div>
+
+    <!-- Deep-dive sections: problem framing, architecture, and takeaways -->
+    <section class="section">
+      <div class="container">
+        <p>Detailed architecture breakdown in progress...</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

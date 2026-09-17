@@ -1309,3 +1309,64 @@ select.input {
 .empty-state { padding: var(--space-8); text-align: center; }
 
 
+/* ==========================================================================
+   12. PAGE — CASE STUDY
+   ========================================================================== */
+.case-hero { padding-block: var(--space-7) calc(var(--space-10) + var(--space-8)); }
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+}
+.breadcrumb a { text-decoration: underline; text-underline-offset: 4px; }
+.breadcrumb li + li::before { content: "/"; margin-right: var(--space-2); opacity: 0.6; }
+
+.case-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: var(--space-8);
+  align-items: end;
+}
+.case-hero .display { margin-block: var(--space-4); font-size: clamp(2.75rem, 7.5vw, 6.5rem); }
+.case-hero .meta-list div { grid-template-columns: 6rem 1fr; }
+.case-hero .meta-list { padding: var(--space-5); border-radius: var(--radius-lg); background: rgba(43, 42, 48, 0.25); }
+.case-hero .meta-list dt { color: var(--mustard-200); }
+.case-hero .meta-list div { border-color: rgba(244, 238, 227, 0.25); }
+
+.case-shot {
+  position: relative;
+  z-index: 2;
+  margin-top: calc(var(--space-10) * -1 - var(--space-6));
+}
+.browser {
+  overflow: hidden;
+  border: var(--border-thick);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+}
+.browser > img, .figure img { width: 100%; }
+.browser__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: var(--border-thick);
+  background: var(--cream-200);
+}
+.browser__bar i { width: 13px; height: 13px; border: 2px solid var(--ink-900); border-radius: 50%; background: var(--color-primary); }
+.browser__bar i:nth-child(2) { background: var(--mustard-400); }
+.browser__bar i:nth-child(3) { background: var(--teal-300); }
+.browser__url {
+  flex: 1;
+  max-width: 360px;
+  margin-left: var(--space-4);
+  padding: 0.15rem 0.75rem;
+  border: 2px solid var(--ink-900);
+  border-radius: var(--radius-pill);
+  background: var(--cream-50);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
