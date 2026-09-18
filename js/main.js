@@ -1,7 +1,9 @@
 // Charles Dwayne Viray - Developer Portfolio Scripts
 // Holy Angel University | Midterm Requirement (Phase 1)
+// Note: real backend mail API may be wired in Finals
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Brand watermark in dev console
   console.log(
     '%c Charles Viray %c AI & Software Engineer ',
     'background:#2B2A30;color:#EDB843;font-weight:bold;padding:2px 4px;',
@@ -15,7 +17,49 @@ document.addEventListener('DOMContentLoaded', () => {
     label.textContent = thisYear;
   });
 
-  // Projects filtering & instant search
+  // Mobile navigation drawer toggle
+  const navToggleBtn = document.querySelector('.nav-toggle');
+  const siteNav = document.getElementById('site-nav');
+  const siteHeader = document.querySelector('.site-header');
+
+  if (navToggleBtn && siteNav) {
+    function toggleNavMenu() {
+      const isExpanded = navToggleBtn.getAttribute('aria-expanded') === 'true';
+      const willOpen = !isExpanded;
+
+      navToggleBtn.setAttribute('aria-expanded', willOpen);
+      siteNav.classList.toggle('is-open', willOpen);
+      if (siteHeader) {
+        siteHeader.classList.toggle('is-menu-open', willOpen);
+      }
+      document.body.classList.toggle('no-scroll', willOpen);
+    }
+
+    navToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleNavMenu();
+    });
+
+    // Close menu when pressing Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && siteNav.classList.contains('is-open')) {
+        toggleNavMenu();
+        navToggleBtn.focus();
+      }
+    });
+
+    // Close if user resizes back to desktop breakpoint
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024 && siteNav.classList.contains('is-open')) {
+        navToggleBtn.setAttribute('aria-expanded', 'false');
+        siteNav.classList.remove('is-open');
+        if (siteHeader) siteHeader.classList.remove('is-menu-open');
+        document.body.classList.remove('no-scroll');
+      }
+    });
+  }
+
+  // Projects filtering & instant search (Works / Projects Page)
   const projectGrid = document.querySelector('[data-project-grid]');
   const filterPills = document.querySelectorAll('[data-filter]');
   const searchBar = document.getElementById('project-search');
@@ -67,15 +111,16 @@ document.addEventListener('DOMContentLoaded', () => {
       searchBar.addEventListener('input', runProjectFilter);
     }
   }
-});
 
-  // Contact form submission modal
+  // Contact form submission modal (Midterm interactive demo)
   const contactForm = document.querySelector('[data-contact-form]');
   const sentDialog = document.getElementById('sent-dialog');
 
   if (contactForm && sentDialog) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      // Basic client check
       const nameInput = contactForm.querySelector('#name');
       const emailInput = contactForm.querySelector('#email');
 
@@ -84,11 +129,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      // Show confirmation dialog
       if (typeof sentDialog.showModal === 'function') {
         sentDialog.showModal();
       } else {
         alert('Thanks! Message received.');
       }
+
       contactForm.reset();
     });
 
@@ -99,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // Close when clicking outside the modal backdrop
     sentDialog.addEventListener('click', (e) => {
       const rect = sentDialog.getBoundingClientRect();
       const inDialog = (
@@ -112,3 +160,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+});
