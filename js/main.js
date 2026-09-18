@@ -68,3 +68,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+  // Contact form submission modal
+  const contactForm = document.querySelector('[data-contact-form]');
+  const sentDialog = document.getElementById('sent-dialog');
+
+  if (contactForm && sentDialog) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameInput = contactForm.querySelector('#name');
+      const emailInput = contactForm.querySelector('#email');
+
+      if (!nameInput?.value.trim() || !emailInput?.value.trim()) {
+        alert('Please fill out your name and email address.');
+        return;
+      }
+
+      if (typeof sentDialog.showModal === 'function') {
+        sentDialog.showModal();
+      } else {
+        alert('Thanks! Message received.');
+      }
+      contactForm.reset();
+    });
+
+    const closeBtns = sentDialog.querySelectorAll('[data-close-dialog]');
+    closeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sentDialog.close();
+      });
+    });
+
+    sentDialog.addEventListener('click', (e) => {
+      const rect = sentDialog.getBoundingClientRect();
+      const inDialog = (
+        rect.top <= e.clientY &&
+        e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX &&
+        e.clientX <= rect.left + rect.width
+      );
+      if (!inDialog) {
+        sentDialog.close();
+      }
+    });
+  }

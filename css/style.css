@@ -948,6 +948,51 @@ select.input {
 .social-btn:active, .social-btn.is-active { transform: translate(3px, 3px); box-shadow: none; }
 .social-btn.is-disabled { opacity: 0.45; box-shadow: none; pointer-events: none; }
 
+/* ---- 6i. Modal / dialog ------------------------------------------------ */
+.modal {
+  width: calc(100% - 2rem);
+  max-width: 520px;
+  padding: 0;
+  border: var(--border-thick);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--ink-900);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.modal::backdrop { background: rgba(43, 42, 48, 0.65); }
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-primary);
+  color: var(--cream-50);
+  border-bottom: var(--border-thick);
+}
+.modal__close {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.modal__body { padding: var(--space-6) var(--space-5); text-align: center; }
+.modal__body .script { display: block; margin-bottom: var(--space-3); }
+.modal__footer {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-5) var(--space-6);
+}
+
 
 /* ==========================================================================
    07. SITE HEADER & NAVIGATION
