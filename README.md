@@ -87,7 +87,7 @@ I mapped every Figma style directly to CSS custom properties in `css/style.css`:
 
 ## Plans for Finals (Phase 2)
 
-- [ ] Connect the contact form to a live backend endpoint (e.g. Formspree or custom Node/Express mailer).
+- [x] Connect the contact form to a live backend endpoint (Formspree).
 - [ ] Add interactive scroll-spy navigation to the case study table of contents.
 - [ ] Deploy the production build to GitHub Pages with a custom domain.
 

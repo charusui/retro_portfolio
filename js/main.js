@@ -112,31 +112,67 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Contact form submission modal (Midterm interactive demo)
+  // Contact form submission with Formspree live endpoint
   const contactForm = document.querySelector('[data-contact-form]');
   const sentDialog = document.getElementById('sent-dialog');
 
   if (contactForm && sentDialog) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       // Basic client check
       const nameInput = contactForm.querySelector('#name');
       const emailInput = contactForm.querySelector('#email');
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
 
       if (!nameInput?.value.trim() || !emailInput?.value.trim()) {
         alert('Please fill out your name and email address.');
         return;
       }
 
-      // Show confirmation dialog
-      if (typeof sentDialog.showModal === 'function') {
-        sentDialog.showModal();
-      } else {
-        alert('Thanks! Message received.');
+      // UI loading state
+      const originalBtnText = submitBtn ? submitBtn.textContent : 'Send message →';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending message...';
       }
 
-      contactForm.reset();
+      try {
+        const formData = new FormData(contactForm);
+        const endpoint = contactForm.action && contactForm.action !== '#'
+          ? contactForm.action
+          : 'https://formspree.io/f/xeaedjpy';
+
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Show confirmation dialog
+          if (typeof sentDialog.showModal === 'function') {
+            sentDialog.showModal();
+          } else {
+            alert('Thanks! Message received.');
+          }
+          contactForm.reset();
+        } else {
+          const result = await response.json().catch(() => null);
+          const errorMsg = result?.errors?.map(err => err.message).join('\n') ||
+            'Oops! There was a problem submitting your message. Please try again.';
+          alert(errorMsg);
+        }
+      } catch (err) {
+        alert('A network error occurred. Please try again or email viraycharlesdwayne@gmail.com directly.');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+      }
     });
 
     const closeBtns = sentDialog.querySelectorAll('[data-close-dialog]');
