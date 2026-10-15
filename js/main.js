@@ -1,6 +1,6 @@
 // Charles Dwayne Viray - Developer Portfolio Scripts
-// Holy Angel University | Midterm Requirement (Phase 1)
-// Note: real backend mail API may be wired in Finals
+// Holy Angel University | Web Development (Phase 2 - Finals)
+// Formspree live mailer integration & interactive Scroll-Spy navigation wired
 
 document.addEventListener('DOMContentLoaded', () => {
   // Brand watermark in dev console
@@ -196,4 +196,128 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Interactive Scroll-Spy navigation (Case Study Table of Contents)
+  const caseToc = document.querySelector('.case-toc');
+  if (caseToc) {
+    const tocLinks = Array.from(caseToc.querySelectorAll('a[href^="#"]'));
+    const sections = tocLinks
+      .map(link => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    if (sections.length > 0) {
+      let isClickScrolling = false;
+      let clickTimeout = null;
+      let currentActiveId = null;
+
+      function setActiveLink(activeSection) {
+        const nextId = activeSection ? activeSection.id : null;
+        if (nextId === currentActiveId) return;
+        currentActiveId = nextId;
+
+        const tocList = caseToc.querySelector('ol');
+        tocLinks.forEach(link => {
+          const targetId = link.getAttribute('href').slice(1);
+          if (nextId && targetId === nextId) {
+            link.setAttribute('aria-current', 'true');
+            // Safely scroll only the mobile <ol> container horizontally, NEVER the window
+            if (tocList && window.innerWidth <= 1024) {
+              const linkLeft = link.offsetLeft;
+              const linkWidth = link.offsetWidth;
+              const listWidth = tocList.offsetWidth;
+              tocList.scrollTo({
+                left: linkLeft - (listWidth / 2) + (linkWidth / 2),
+                behavior: 'smooth'
+              });
+            }
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      }
+
+      function updateActiveToc() {
+        if (isClickScrolling) return;
+
+        // Reading line threshold: ~25% down the viewport
+        const threshold = Math.max(120, Math.min(240, window.innerHeight * 0.25));
+
+        // 1. If scrolled up into the hero/header above the case sections, remove active state
+        if (sections[0].getBoundingClientRect().top > threshold + 50) {
+          setActiveLink(null);
+          return;
+        }
+
+        // 2. If near the bottom of the document, activate the last section
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+          setActiveLink(sections[sections.length - 1]);
+          return;
+        }
+
+        // 3. Find the section that spans across the reading line
+        let activeSection = null;
+        for (let i = 0; i < sections.length; i++) {
+          const rect = sections[i].getBoundingClientRect();
+          if (rect.top <= threshold && rect.bottom > threshold) {
+            activeSection = sections[i];
+            break;
+          }
+        }
+
+        // 4. Fallback: last section that scrolled past threshold
+        if (!activeSection) {
+          for (let i = sections.length - 1; i >= 0; i--) {
+            if (sections[i].getBoundingClientRect().top <= threshold) {
+              activeSection = sections[i];
+              break;
+            }
+          }
+        }
+
+        setActiveLink(activeSection);
+      }
+
+      // Smooth scroll on click and update active state immediately
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const targetId = link.getAttribute('href').slice(1);
+          const targetSection = document.getElementById(targetId);
+
+          if (targetSection) {
+            e.preventDefault();
+            isClickScrolling = true;
+            clearTimeout(clickTimeout);
+
+            setActiveLink(targetSection);
+
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+
+            if (history.pushState) {
+              history.pushState(null, '', `#${targetId}`);
+            }
+
+            clickTimeout = setTimeout(() => {
+              isClickScrolling = false;
+            }, 800);
+          }
+        });
+      });
+
+      // Passive throttled scroll handler
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateActiveToc();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // Run on initial page load
+      updateActiveToc();
+    }
+  }
+
 });

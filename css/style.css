@@ -1570,8 +1570,13 @@ select.input {
   font-size: var(--fs-small);
   font-weight: 700;
   text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 .case-toc a:hover, .case-toc a[aria-current="true"] { border-color: var(--color-primary); background: var(--cream-200); }
+
+.case-section {
+  scroll-margin-top: calc(var(--space-8) + 1rem);
+}
 
 .case-section + .case-section {
   margin-top: var(--space-9);
@@ -1804,12 +1809,15 @@ select.input {
   .case-hero__grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
   .case-layout { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
   .case-toc {
-    top: 0;
-    z-index: 5;
+    top: var(--header-height);
+    z-index: 45;
     margin-inline: calc(var(--page-margin) * -1);
     padding: var(--space-3) var(--page-margin);
     background: var(--color-bg);
     border-bottom: var(--border-thin);
+  }
+  .case-section {
+    scroll-margin-top: calc(var(--header-height) + 55px);
   }
   .case-toc .label { display: none; }
   .case-toc ol { display: flex; gap: var(--space-2); margin: 0; overflow-x: auto; scrollbar-width: none; }
