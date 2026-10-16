@@ -320,4 +320,88 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Certificate hover live preview
+  const certLinks = document.querySelectorAll('.cert-list a[href$=".pdf"]');
+  if (certLinks.length > 0) {
+    const previewCard = document.createElement('div');
+    previewCard.className = 'cert-preview-card';
+    previewCard.setAttribute('aria-hidden', 'true');
+    previewCard.innerHTML = `
+      <div class="cert-preview-card__header">
+        <span>Verified Credential</span>
+        <span>PDF Preview</span>
+      </div>
+      <img class="cert-preview-card__img" src="" alt="Certificate thumbnail" loading="eager">
+      <div class="cert-preview-card__footer">
+        <span class="preview-title">Certificate</span>
+        <span>Click to open ↗</span>
+      </div>
+    `;
+    document.body.appendChild(previewCard);
+
+    const previewImg = previewCard.querySelector('.cert-preview-card__img');
+    const previewTitle = previewCard.querySelector('.preview-title');
+
+    function positionPreview(clientX, clientY) {
+      const cardWidth = 350;
+      const cardHeight = 240;
+      const padding = 16;
+
+      let left = clientX + 20;
+      let top = clientY - 40;
+
+      // Flip left if overflowing right edge
+      if (left + cardWidth > window.innerWidth - padding) {
+        left = clientX - cardWidth - 20;
+      }
+      if (left < padding) left = padding;
+
+      // Flip up if overflowing bottom edge
+      if (top + cardHeight > window.innerHeight - padding) {
+        top = window.innerHeight - cardHeight - padding;
+      }
+      if (top < padding) top = padding;
+
+      previewCard.style.left = `${left}px`;
+      previewCard.style.top = `${top}px`;
+    }
+
+    certLinks.forEach(link => {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener');
+
+      const href = link.getAttribute('href');
+      const thumbUrl = href
+        .replace(/\.pdf$/i, '.png')
+        .replace('assets/certificates/', 'assets/certificates/thumbs/');
+      const certName = link.textContent.trim().replace(/\s*PDF\s*↗?$/i, '');
+
+      link.addEventListener('mouseenter', (e) => {
+        previewImg.src = thumbUrl;
+        previewTitle.textContent = certName;
+        positionPreview(e.clientX, e.clientY);
+        previewCard.classList.add('is-visible');
+      });
+
+      link.addEventListener('mousemove', (e) => {
+        positionPreview(e.clientX, e.clientY);
+      });
+
+      link.addEventListener('mouseleave', () => {
+        previewCard.classList.remove('is-visible');
+      });
+
+      link.addEventListener('focus', () => {
+        const rect = link.getBoundingClientRect();
+        previewImg.src = thumbUrl;
+        previewTitle.textContent = certName;
+        positionPreview(rect.right, rect.top);
+        previewCard.classList.add('is-visible');
+      });
+
+      link.addEventListener('blur', () => {
+        previewCard.classList.remove('is-visible');
+      });
+    });
+  }
 });
