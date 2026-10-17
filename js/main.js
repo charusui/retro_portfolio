@@ -404,4 +404,291 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // 1. Interactive Retro PC CRT terminal boot on hero illustration
+  function initRetroPc() {
+    const pcContainer = document.getElementById('retro-pc');
+    if (!pcContainer) return;
+
+    const screenBody = pcContainer.querySelector('.retro-pc__body');
+    const screenPrompt = pcContainer.querySelector('.retro-pc__prompt');
+    if (!screenBody) return;
+
+    const bootSequences = [
+      [
+        'C:\\CHARUSUI> run portfolio.exe',
+        'Loading models... OK!',
+        'Segments ready. Welcome!'
+      ],
+      [
+        'C:\\CHARUSUI> status --gdg',
+        'Role: AI/ML Lead @ GDG',
+        'Awards: 5x Hackathons Won',
+        'Status: All systems GO!'
+      ],
+      [
+        'C:\\CHARUSUI> cat bio.txt',
+        'Building smart apps & ML.',
+        'BS Computer Science'
+      ]
+    ];
+
+    let sequenceIndex = 0;
+    let isTyping = false;
+    let typeTimeout = null;
+
+    function runBoot() {
+      if (isTyping) return;
+      isTyping = true;
+
+      if (screenPrompt) screenPrompt.textContent = '► BOOTING... ◄';
+
+      const sequence = bootSequences[sequenceIndex % bootSequences.length];
+      sequenceIndex++;
+
+      const fullText = sequence.join('\n');
+      screenBody.textContent = '';
+
+      let charIndex = 0;
+
+      function typeNextChar() {
+        if (charIndex < fullText.length) {
+          screenBody.textContent += fullText.charAt(charIndex);
+          charIndex++;
+
+          // Typewriter pacing with slight pause after newlines
+          const isNewline = fullText.charAt(charIndex - 1) === '\n';
+          const delay = isNewline ? 160 : 22;
+
+          typeTimeout = setTimeout(typeNextChar, delay);
+        } else {
+          isTyping = false;
+          if (screenPrompt) screenPrompt.textContent = '► CLICK SCREEN TO RE-RUN ◄';
+        }
+      }
+
+      typeNextChar();
+    }
+
+    pcContainer.addEventListener('click', runBoot);
+
+    pcContainer.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        runBoot();
+      }
+    });
+  }
+
+  // 3. Analog mechanical odometer / rolling numbers for stats
+  function initStatsOdometer() {
+    const statElements = document.querySelectorAll('.stat-strip strong, .stat__value');
+    if (statElements.length === 0) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // easeOutExpo for rapid mechanical spin that decelerates into place
+    function easeOutExpo(x) {
+      return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        obs.unobserve(el);
+
+        const rawText = el.textContent.trim();
+        const match = rawText.match(/^([^0-9.]*)(\d+(?:\.\d+)?)(.*)$/);
+        if (!match) return;
+
+        const prefix = match[1];
+        const targetNum = parseFloat(match[2]);
+        const suffix = match[3];
+        const isDecimal = match[2].includes('.');
+        const decimalPlaces = isDecimal ? match[2].split('.')[1].length : 0;
+
+        const duration = 1300;
+        const startTime = performance.now();
+
+        function step(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = easeOutExpo(progress);
+
+          const currentVal = targetNum * eased;
+          const formattedNum = isDecimal ? currentVal.toFixed(decimalPlaces) : Math.floor(currentVal);
+
+          el.textContent = `${prefix}${formattedNum}${suffix}`;
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = rawText;
+          }
+        }
+
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.25 });
+
+    statElements.forEach(el => observer.observe(el));
+  }
+
+  // 3. Tactile 3D magnetic tilt with offset shadow physics (desktop only)
+  function initCard3DTilt() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    if (window.innerWidth <= 1024) return;
+
+    const cards = document.querySelectorAll('.project-card');
+
+    cards.forEach(card => {
+      card.classList.add('card-tilt');
+      let rafId = null;
+
+      card.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 1024) return;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Normalized coordinate space [-1, 1]
+        const normX = (x / rect.width) * 2 - 1;
+        const normY = (y / rect.height) * 2 - 1;
+
+        // Dynamic 3D tilt angles (max 6 deg)
+        const rotX = -(normY * 6).toFixed(2);
+        const rotY = (normX * 6).toFixed(2);
+
+        // Counter-sliding ink shadow physics
+        const shadowX = (4 - normX * 6).toFixed(1);
+        const shadowY = (4 - normY * 6).toFixed(1);
+
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.015, 1.015, 1.015)`;
+          card.style.boxShadow = `${shadowX}px ${shadowY}px 0 var(--ink-900)`;
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (rafId) cancelAnimationFrame(rafId);
+        card.style.transform = '';
+        card.style.boxShadow = '';
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth <= 1024) {
+        cards.forEach(card => {
+          card.style.transform = '';
+          card.style.boxShadow = '';
+        });
+      }
+    }, { passive: true });
+  }
+
+  // 5. Interactive rubber stamp tool ("Workshop Mode")
+  function initStampMode() {
+    const stampVariants = [
+      { class: 'workshop-stamp--approved', html: '<span>APPROVED</span>' },
+      { class: 'workshop-stamp--verified', html: '<span>VERIFIED</span>' },
+      { class: 'workshop-stamp--charusui', html: 'CHARUSUI<br><span>WORKSHOP</span>' },
+      { class: 'workshop-stamp--secret', html: '<span>TOP SECRET</span>' }
+    ];
+
+    let isActive = false;
+    let stampCount = 0;
+    const placedStamps = [];
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'stamp-tool-toggle';
+    toggleBtn.type = 'button';
+    toggleBtn.setAttribute('aria-label', 'Toggle interactive rubber stamp tool');
+    toggleBtn.innerHTML = '<span class="stamp-tool-toggle__icon">✎</span><span class="stamp-tool-toggle__text">Stamp Mode</span>';
+    document.body.appendChild(toggleBtn);
+
+    const toolbar = document.createElement('div');
+    toolbar.className = 'stamp-toolbar';
+    toolbar.hidden = true;
+    toolbar.innerHTML = `
+      <span>Stamps: <strong class="stamp-toolbar__count">0</strong></span>
+      <button type="button" class="stamp-toolbar__btn stamp-toolbar__btn--clear">Clear</button>
+      <button type="button" class="stamp-toolbar__btn stamp-toolbar__btn--close" aria-label="Exit stamp mode">✕</button>
+    `;
+    document.body.appendChild(toolbar);
+
+    const countLabel = toolbar.querySelector('.stamp-toolbar__count');
+    const clearBtn = toolbar.querySelector('.stamp-toolbar__btn--clear');
+    const closeBtn = toolbar.querySelector('.stamp-toolbar__btn--close');
+
+    function setStampMode(enabled) {
+      isActive = enabled;
+      toggleBtn.classList.toggle('is-active', isActive);
+      document.body.classList.toggle('stamp-mode-active', isActive);
+      toolbar.hidden = !isActive;
+
+      const label = toggleBtn.querySelector('.stamp-tool-toggle__text');
+      if (label) {
+        label.textContent = isActive ? 'Stamping...' : 'Stamp Mode';
+      }
+    }
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setStampMode(!isActive);
+    });
+
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setStampMode(false);
+    });
+
+    clearBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      placedStamps.forEach(stamp => stamp.remove());
+      placedStamps.length = 0;
+      stampCount = 0;
+      countLabel.textContent = '0';
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!isActive) return;
+
+      // Ignore clicks on buttons, links, inputs, and the stamp controls
+      if (e.target.closest('button, a, input, select, textarea, .stamp-toolbar, .stamp-tool-toggle, .nav-toggle')) {
+        return;
+      }
+
+      // Random jitter angle between -15deg and +15deg
+      const angle = Math.floor(Math.random() * 31) - 15;
+      const variant = stampVariants[Math.floor(Math.random() * stampVariants.length)];
+
+      const stamp = document.createElement('div');
+      stamp.className = `workshop-stamp ${variant.class}`;
+      stamp.style.setProperty('--stamp-angle', `${angle}deg`);
+      stamp.style.left = `${e.pageX}px`;
+      stamp.style.top = `${e.pageY}px`;
+      stamp.innerHTML = variant.html;
+
+      document.body.appendChild(stamp);
+      placedStamps.push(stamp);
+
+      stampCount++;
+      countLabel.textContent = stampCount;
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isActive) {
+        setStampMode(false);
+      }
+    });
+  }
+
+  // Initialize new retro animations
+  initRetroPc();
+  initStatsOdometer();
+  initCard3DTilt();
+  initStampMode();
 });
