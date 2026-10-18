@@ -17,7 +17,7 @@ I went with a **retro-modern design direction** inspired by vintage editorial pr
 | **Home** | `index.html` | Hero introduction with retro workstation art, live tech stack ticker, workshop bio, featured case study spotlight, core skills, and client/peer testimonials. |
 | **About** | `about.html` | Full bio, three core engineering rules, career & education progression timeline (including my FlyRank AI engineering internship), hackathon achievements, 23 verified certifications, and categorized tools directory. |
 | **Projects** | `projects.html` | Interactive project catalog featuring client-side search and category filtering chips (AI/ML, Mobile, Web & XR, Systems). |
-| **Case Study** | `case-study.html` | Deep dive into **Seguri**, my hybrid-AI mobile security app: problem framing, 5-stage processing flow, local ML vs cloud LLM architecture, and hackathon test metrics (<200 ms latency, 98% accuracy). |
+| **Case Study** | `case-study.html` | Deep dive into **Seguri**, my mobile security app: 100% offline on-device scam message screening, cloud threat intelligence feeds, and hackathon test metrics (<200 ms latency, 98% accuracy). |
 | **Contact** | `contact.html` | Direct email, availability indicators, and an accessible contact form with client-side modal confirmation. |
 
 ---
@@ -89,7 +89,7 @@ I mapped every Figma style directly to CSS custom properties in `css/style.css`:
 
 - [x] Connect the contact form to a live backend endpoint (Formspree).
 - [x] Add interactive scroll-spy navigation to the case study table of contents.
-- [ ] Deploy the production build to GitHub Pages with a custom domain.
+- [x] Deploy the production build to GitHub Pages (https://charusui.github.io/retro_portfolio/).
 
 ---
 

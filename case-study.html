@@ -119,10 +119,10 @@
           <article class="case-section" id="problem">
             <header class="case-section__head"><span class="step-no" aria-hidden="true">01</span><h2>The problem</h2></header>
             <div class="prose">
-              <p>Most scam protection forces a trade-off. Cloud-only detection is smart but means sending private conversations to a server. On-device-only detection keeps data private but can miss new, cleverly worded scams. Vulnerable users can't be expected to judge that trade-off themselves.</p>
+              <p>Most scam protection forces a trade-off. Cloud-only scanning means uploading personal conversations to a remote server. On-device scanning keeps messages 100% private, but requires tuning lightweight models to catch nuanced regional scams locally in milliseconds.</p>
             </div>
             <blockquote class="quote-card">
-              <p>The design tension: how do you get cloud-level intelligence without giving up on-device privacy?</p>
+              <p>The design tension: how do you deliver instant, accurate scam detection without ever sending private messages off the phone?</p>
               <footer class="label text-muted">— Core question behind Seguri</footer>
             </blockquote>
           </article>
@@ -135,12 +135,12 @@
             <ol class="process-steps">
               <li class="card card--flat"><span class="label text-muted">Step 1</span><h4>Map threats</h4><p>Group attacks by channel: links, messages and calls.</p></li>
               <li class="card card--flat"><span class="label text-muted">Step 2</span><h4>Design alerts</h4><p>Clear, calm warnings with one obvious action.</p></li>
-              <li class="card card--flat"><span class="label text-muted">Step 3</span><h4>Build hybrid AI</h4><p>100% offline on-device scanning with optional Gemini cloud features.</p></li>
+              <li class="card card--flat"><span class="label text-muted">Step 3</span><h4>Build hybrid architecture</h4><p>100% offline on-device message scanning, paired with cloud AI for security news feeds.</p></li>
               <li class="card card--flat"><span class="label text-muted">Step 4</span><h4>Measure</h4><p>Tune for speed (&lt;200 ms) and accuracy (98%).</p></li>
             </ol>
             <!-- Architecture diagram: simplified 5-node hybrid flow SVG -->
             <figure class="figure">
-              <img src="images/projects/seguri-flow.svg" alt="Diagram: on-device AI screens messages offline; safe items pass without alert, threats trigger an instant block, and Gemini cloud is an optional assistant" width="800" height="380" loading="lazy">
+              <img src="images/projects/seguri-flow.svg" alt="Diagram: on-device AI screens messages offline; safe items pass without alert, threats trigger an instant block, and Gemini cloud powers security news and advisory updates" width="800" height="380" loading="lazy">
               <figcaption>Fig. 1 — The hybrid-AI flow, simplified.</figcaption>
             </figure>
           </article>
@@ -148,10 +148,11 @@
           <article class="case-section" id="solution">
             <header class="case-section__head"><span class="step-no" aria-hidden="true">03</span><h2>The solution</h2></header>
             <div class="prose">
-              <p>Seguri's <strong>Hybrid-AI Security Suite</strong> combines an offline-first on-device neural network with optional cloud intelligence. Key decisions:</p>
+              <p>Seguri's <strong>Hybrid-AI Security Suite</strong> keeps message screening 100% on-device while using cloud intelligence strictly for public threat news. Key decisions:</p>
               <ul>
-                <li><strong>100% on-device core</strong>: 24/7 Active Guard and volatile RAM-only scanner run locally in milliseconds with zero data upload.</li>
+                <li><strong>100% on-device core</strong>: 24/7 Active Guard and volatile RAM-only scanner screen messages locally in milliseconds with zero data uploaded to any server.</li>
                 <li><strong>Context &amp; heuristics</strong>: dual-layer TFLite model detects regional slang (e.g. Taglish scams), while Dart heuristics eliminate false alarms on safe family texts and OTPs.</li>
+                <li><strong>Cloud threat feeds</strong>: cloud AI is used solely for aggregating live cybersecurity news, scam advisories, and trending threat patterns.</li>
                 <li><strong>Empathetic protection</strong>: high-contrast plain-language alerts, an offline step-by-step Scam First Aid Kit, and a secure local evidence log.</li>
               </ul>
             </div>
@@ -184,7 +185,7 @@
             <div class="split-cards">
               <div class="card card--flat">
                 <h3 class="card__title">What was hard</h3>
-                <p class="text-muted">Balancing speed and accuracy. Every call to the cloud adds latency, so deciding <em>when</em> to escalate mattered as much as the models themselves.</p>
+                <p class="text-muted">Running detection 100% offline. Because private messages never leave the device, all threat screening had to happen locally in under 200 ms without draining battery or causing false alarms on legitimate family texts and OTPs.</p>
               </div>
               <div class="card card--flat card--teal">
                 <h3 class="card__title">What I took away</h3>
@@ -235,7 +236,7 @@
           <p class="label site-footer__title">Elsewhere</p>
           <ul class="site-footer__links">
             <li><a href="https://github.com/charusui">GitHub ↗</a></li>
-            <li><a href="https://www.linkedin.com/in/charles-viray-a45526373">LinkedIn ↗</a></li>
+            <li><a href="https://www.linkedin.com/in/charlesviray">LinkedIn ↗</a></li>
             <li><a href="mailto:viraycharlesdwayne@gmail.com">Email</a></li>
           </ul>
         </div>
