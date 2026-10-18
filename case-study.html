@@ -73,7 +73,7 @@
             <div><dt>Type</dt><dd>Mobile security app</dd></div>
             <div><dt>Focus</dt><dd>Fraud &amp; scam detection</dd></div>
             <div><dt>Platform</dt><dd>Cross-platform (Flutter)</dd></div>
-            <div><dt>Stack</dt><dd>Dart, Flutter, on-device ML, cloud LLMs</dd></div>
+            <div><dt>Stack</dt><dd>Dart, Flutter, on-device ML, Gemini API (News)</dd></div>
           </dl>
         </div>
       </div>
@@ -110,7 +110,7 @@
               <h3>Objectives</h3>
               <ul>
                 <li>Detect phishing links, scam messages and fraudulent calls in one app.</li>
-                <li>Keep personal messages private by analysing on the device first.</li>
+                <li>Keep personal messages 100% private through on-device offline screening (zero cloud uploads).</li>
                 <li>Warn users fast enough to matter, with a target under 200 ms.</li>
               </ul>
             </div>
@@ -138,10 +138,10 @@
               <li class="card card--flat"><span class="label text-muted">Step 3</span><h4>Build hybrid architecture</h4><p>100% offline on-device message scanning, paired with cloud AI for security news feeds.</p></li>
               <li class="card card--flat"><span class="label text-muted">Step 4</span><h4>Measure</h4><p>Tune for speed (&lt;200 ms) and accuracy (98%).</p></li>
             </ol>
-            <!-- Architecture diagram: simplified 5-node hybrid flow SVG -->
+            <!-- Architecture diagram: simplified on-device flow SVG -->
             <figure class="figure">
-              <img src="images/projects/seguri-flow.svg" alt="Diagram: on-device AI screens messages offline; safe items pass without alert, threats trigger an instant block, and Gemini cloud powers security news and advisory updates" width="800" height="380" loading="lazy">
-              <figcaption>Fig. 1 — The hybrid-AI flow, simplified.</figcaption>
+              <img src="images/projects/seguri-flow.svg" alt="Diagram: on-device AI screens messages offline; safe items pass without alert, threats trigger an instant block" width="800" height="310" loading="lazy">
+              <figcaption>Fig. 1 — The on-device flow, simplified.</figcaption>
             </figure>
           </article>
 
@@ -185,7 +185,7 @@
             <div class="split-cards">
               <div class="card card--flat">
                 <h3 class="card__title">What was hard</h3>
-                <p class="text-muted">Running detection 100% offline. Because private messages never leave the device, all threat screening had to happen locally in under 200 ms without draining battery or causing false alarms on legitimate family texts and OTPs.</p>
+                <p class="text-muted">Training the model to accurately detect scam messages while avoiding false positives. Scammers constantly adapt phrasing to mimic legitimate bank OTPs, delivery updates, and conversational Taglish. Tuning model thresholds and heuristics to reliably catch clever fraud without flagging harmless family messages or authentic security codes was the primary challenge.</p>
               </div>
               <div class="card card--flat card--teal">
                 <h3 class="card__title">What I took away</h3>

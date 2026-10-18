@@ -1,52 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380">
-  <rect width="800" height="380" rx="14" fill="#FBF7F0" stroke="#2B2A30" stroke-width="4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 310" width="800" height="310">
+  <!-- Outer card frame -->
+  <rect width="800" height="310" rx="14" fill="#FBF7F0" stroke="#2B2A30" stroke-width="4"/>
 
-  <g font-family="Courier New, monospace" font-weight="700" font-size="15" text-anchor="middle">
-    <!-- Input -->
-    <rect x="30" y="150" width="140" height="80" rx="12" fill="#F4EEE3" stroke="#2B2A30" stroke-width="4"/>
-    <text x="100" y="185" fill="#2B2A30">SMS / chat</text>
-    <text x="100" y="207" fill="#2B2A30">/ paste</text>
-
-    <!-- On-Device Core -->
-    <rect x="230" y="140" width="170" height="100" rx="12" fill="#8CC0B8" stroke="#2B2A30" stroke-width="4"/>
-    <text x="315" y="182" fill="#2B2A30">ON-DEVICE AI</text>
-    <text x="315" y="206" font-size="13" fill="#2B2A30">100% offline</text>
-
-    <!-- Safe -->
-    <rect x="470" y="40" width="170" height="90" rx="12" fill="#D5EEE2" stroke="#19674C" stroke-width="4"/>
-    <text x="555" y="80" fill="#19674C">SAFE</text>
-    <text x="555" y="104" font-size="13" fill="#19674C">no alert</text>
-
-    <!-- Optional Cloud (Gemini) -->
-    <rect x="470" y="250" width="170" height="90" rx="12" fill="#EDB843" stroke="#2B2A30" stroke-width="4"/>
-    <text x="555" y="290" fill="#2B2A30">GEMINI CLOUD</text>
-    <text x="555" y="314" font-size="13" fill="#2B2A30">optional assistant</text>
-
-    <!-- Block / Warn -->
-    <rect x="670" y="150" width="110" height="80" rx="12" fill="#BA423C" stroke="#2B2A30" stroke-width="4"/>
-    <text x="725" y="185" fill="#FBF7F0">BLOCK</text>
-    <text x="725" y="207" font-size="13" fill="#FBF7F0">alert</text>
-  </g>
-
-  <!-- Connectors -->
+  <!-- Connecting Arrows -->
   <g stroke="#2B2A30" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <!-- Input to On-Device AI -->
-    <path d="M170 190 H222"/>
-    <path d="M212 182 l10 8 -10 8"/>
-
-    <!-- On-Device to Safe (Upper Branch) -->
-    <path d="M400 170 C 430 120 440 90 462 86"/>
-    <path d="M452 78 l10 8 -10 8"/>
-
-    <!-- On-Device to Block (Direct Offline Alert) -->
-    <path d="M400 190 H662"/>
-    <path d="M652 182 l10 8 -10 8"/>
-
-    <!-- On-Device to Gemini Cloud (Optional Dashed Path) -->
-    <path d="M400 210 C 430 260 440 290 462 294" stroke-dasharray="10 8"/>
-    <path d="M452 286 l10 8 -10 8"/>
+    <path d="M 180 145 H 236"/>
+    <!-- On-Device to Safe (Upper curve) -->
+    <path d="M 444 125 C 475 125, 490 95, 510 95"/>
+    <!-- On-Device to Block (Lower curve) -->
+    <path d="M 444 165 C 475 165, 490 195, 510 195"/>
   </g>
 
+  <!-- Arrowheads -->
+  <g fill="#2B2A30">
+    <polygon points="236,137 248,145 236,153"/>
+    <polygon points="508,87 520,95 508,103"/>
+    <polygon points="508,187 520,195 508,203"/>
+  </g>
+
+  <!-- Node 1: Input (SMS / Chat / Clipboard) -->
+  <rect x="32" y="105" width="148" height="80" rx="12" fill="#FFFFFF" stroke="#2B2A30" stroke-width="4"/>
+  <text x="106" y="141" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-weight="700" font-size="15" fill="#2B2A30">SMS / Chat</text>
+  <text x="106" y="163" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-size="13" fill="#5E5862">/ Clipboard</text>
+
+  <!-- Node 2: On-Device AI -->
+  <rect x="248" y="80" width="196" height="130" rx="14" fill="#7BB5AC" stroke="#2B2A30" stroke-width="4"/>
+  <text x="346" y="120" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-weight="700" font-size="16" fill="#2B2A30">ON-DEVICE AI</text>
+  <text x="346" y="146" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-size="13" fill="#2B2A30">TFLite + Heuristics</text>
+  <text x="346" y="172" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-weight="700" font-size="13" fill="#FFFFFF">&lt;200 ms · Local RAM</text>
+
+  <!-- Node 3: Safe (Pass Without Alert) -->
+  <rect x="520" y="65" width="248" height="60" rx="12" fill="#D7EDE4" stroke="#19674C" stroke-width="4"/>
+  <text x="644" y="102" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-weight="700" font-size="14" fill="#19674C">SAFE: Pass Without Alert</text>
+
+  <!-- Node 4: Block (Instant Threat Alert) -->
+  <rect x="520" y="165" width="248" height="60" rx="12" fill="#BA423C" stroke="#2B2A30" stroke-width="4"/>
+  <text x="644" y="202" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-weight="700" font-size="14" fill="#FFFFFF">BLOCK: Instant Threat Alert</text>
+
   <!-- Bottom Caption -->
-  <text x="400" y="366" text-anchor="middle" font-family="Courier New, monospace" font-size="13" fill="#5E5862">Simplified hybrid-AI flow (illustrative)</text>
+  <text x="400" y="275" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-size="12" fill="#5E5862" font-style="italic">Private messages screened purely in volatile memory — never stored, never transmitted off-device</text>
 </svg>
